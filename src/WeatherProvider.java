@@ -2,18 +2,20 @@ package src;
 
 public class WeatherProvider
 {
-    public  WeatherProvider() {
+    private  WeatherProvider() {
 
     }
 
-    private WeatherProvider weatherProvider;
-    private String[]        weather;
+    private static WeatherProvider weatherProvider = new WeatherProvider();
+    private static String[]        weather = {"RAIN", "SNOW", "SUN", "FOG"};
 
-    public  WeatherProvider getProvider() {
-        return this.weatherProvider;
+    public static  WeatherProvider getProvider() {
+        return WeatherProvider.weatherProvider;
     }
 
     public  String  getCurrentWeather(Coordinates coordinates) {
-        return null;
+        int value = coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight();
+
+        return weather[value % 4];
     }
 }
